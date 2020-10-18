@@ -12,12 +12,14 @@ const request = require('request');
 exports.checkstatus = functions.https.onRequest((req, res) => {
     res.set("Access-Control-Allow-Origin", "*");
     res.set("Access-Control-Allow-Credentials", "true");
-    let uri = req.query.uri;
+    let uri = req.query.pu;
     request(uri, (e, r, b) => {
+        let status = 500;
+        if (!e && r) {
+            status = r.statusCode;
+        }
         res.json({
-            uri: uri,
-            status: r.statusCode,
-            error: e
+            status: status,
         });
     });
 });
