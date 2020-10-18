@@ -20,6 +20,8 @@ response.send("Hello from Firebase!");
 });
 ```
 
+firebase deploy --only "functions:checkstatus"
+
 # CORS
 
 ```
